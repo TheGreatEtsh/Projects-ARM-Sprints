@@ -36,43 +36,44 @@ APP\app.c: 2 warnings, 0 errors
 compiling led_program.c...
 HAL\led\led_interface.h(34): warning:  #1-D: last line of file ends without a newline
   enu_error_status_t_ led_off(uint8_t_ ledpin_index );
-HAL\led\led_program.c(52): warning:  #940-D: missing return statement at end of non-void function "led_init" 
+HAL\led\led_program.c(64): warning:  #940-D: missing return statement at end of non-void function "led_init" 
   }
 HAL\led\led_program.c(24): warning:  #550-D: variable "en_a_error"  was set but never used
   enu_error_status_t_ en_a_error = ERROR_OK;
-HAL\led\led_program.c(74): warning:  #940-D: missing return statement at end of non-void function "led_on" 
-  }
-HAL\led\led_program.c(63): warning:  #550-D: variable "en_a_error"  was set but never used
+HAL\led\led_program.c(93): warning:  #223-D: function "gpio_pin_Write" declared implicitly
+  		gpio_pin_Write( ledpin_index, GPIO_HIGH);
+HAL\led\led_program.c(96): warning:  #940-D: missing return statement at end of non-void function "led_on" 
+  }}
+HAL\led\led_program.c(74): warning:  #550-D: variable "en_a_error"  was set but never used
   	enu_error_status_t_ en_a_error = ERROR_OK;
-HAL\led\led_program.c(97): warning:  #1-D: last line of file ends without a newline
-  }
-HAL\led\led_program.c(97): warning:  #940-D: missing return statement at end of non-void function "led_off" 
-  }
-HAL\led\led_program.c(85): warning:  #550-D: variable "en_a_error"  was set but never used
+HAL\led\led_program.c(125): warning:  #223-D: function "gpio_pin_Write" declared implicitly
+  		gpio_pin_Write( ledpin_index, GPIO_LOW);
+HAL\led\led_program.c(129): warning:  #1-D: last line of file ends without a newline
+  }}
+HAL\led\led_program.c(129): warning:  #940-D: missing return statement at end of non-void function "led_off" 
+  }}
+HAL\led\led_program.c(107): warning:  #550-D: variable "en_a_error"  was set but never used
   	enu_error_status_t_ en_a_error = ERROR_OK;
-HAL\led\led_program.c: 8 warnings, 0 errors
+HAL\led\led_program.c: 10 warnings, 0 errors
 compiling button_program.c...
 HAL\button\button_interface.h(37): warning:  #1-D: last line of file ends without a newline
   enu_error_status_t_ Button_GetState(uint8_t_ buttonpin, enu_gpio_pin_internal_attach_t_ ButtonAttach, uint8_t_ *buttonState);
-HAL\button\button_program.c(37): warning:  #940-D: missing return statement at end of non-void function "button_init" 
+HAL\button\button_program.c(52): warning:  #940-D: missing return statement at end of non-void function "button_init" 
   }
 HAL\button\button_program.c(21): warning:  #550-D: variable "en_a_error"  was set but never used
   enu_error_status_t_ en_a_error = ERROR_OK;
-HAL\button\button_program.c(76): warning:  #1-D: last line of file ends without a newline
-  }
-HAL\button\button_program.c(76): warning:  #940-D: missing return statement at end of non-void function "Button_GetState" 
-  }
-HAL\button\button_program.c(51): warning:  #550-D: variable "en_a_error"  was set but never used
-  	enu_error_status_t_ en_a_error = ERROR_OK;
-HAL\button\button_program.c: 6 warnings, 0 errors
-compiling gpio_program.c...
+HAL\button\button_program.c: 3 warnings, 0 errors
 compiling main.c...
 compiling nvic_program.c...
+compiling gpio_program.c...
 assembling startup_TM4C123.s...
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=700 RO-data=636 RW-data=0 ZI-data=608  
-".\Objects\LEDControl_v1.axf" - 0 Error(s), 16 Warning(s).
+.\Objects\LEDControl_v1.axf: Error: L6218E: Undefined symbol gpio_pin_Write (referred from led_program.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\Objects\LEDControl_v1.axf" - 1 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -101,7 +102,8 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_TM4C123.s
       Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\system_TM4C123.c
-Build Time Elapsed:  00:00:02
+Target not created.
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>
