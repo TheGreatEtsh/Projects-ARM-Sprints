@@ -276,8 +276,8 @@ enu_error_status_t_ gpio_pin_read(uint8_t_ uint8_pin_index, uint8_t_* uint8_pin_
 		}
 		else
 		{
-			//*uint8_pin_state = GPIODATA(uint8_port_num) >> uint8_pin_num; 
-			*uint8_pin_state = GET_BIT(GPIODATA(uint8_port_num), uint8_port_num);
+			*uint8_pin_state = GPIODATA(uint8_port_num) >> uint8_pin_num; 
+			//*uint8_pin_state = GET_BIT(GPIODATA(uint8_port_num), uint8_port_num);
 		}
 	}
 

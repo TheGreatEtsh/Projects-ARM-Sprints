@@ -11,6 +11,6 @@
     "\\MCAL\\gpio",
     "\\MCAL\\nvic"
   ],
-  "SelectedNode": "\\MCAL\\nvic\\nvic_interface.h",
+  "SelectedNode": "\\HAL\\led\\led_interface.h",
   "PreviewInSolutionExplorer": false
 }
