@@ -1,0 +1,44 @@
+Dependencies for Project 'LEDControl_v1', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
+F (.\APP\app.c)(0x648D774A)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\app.o --omf_browse .\objects\app.crf --depend .\objects\app.d)
+I (APP\app.h)(0x648CB72B)
+I (.\HAL\led\led_interface.h)(0x648D7442)
+I (.\HAL\led\led_config.h)(0x648D70F9)
+I (.\HAL\button\button_interface.h)(0x648D7444)
+I (.\HAL\button\button_config.h)(0x648D712E)
+F (.\HAL\led\led_program.c)(0x648D774A)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\led_program.o --omf_browse .\objects\led_program.crf --depend .\objects\led_program.d)
+I (HAL\led\led_interface.h)(0x648D7442)
+I (HAL\led\led_config.h)(0x648D70F9)
+I (.\MCAL\gpio\gpio_interface.h)(0x648D75E6)
+I (.\MCAL\gpio\..\..\LIB\common.h)(0x648CCC70)
+I (.\MCAL\gpio\..\..\LIB\bit_math.h)(0x648D774A)
+F (.\HAL\button\button_program.c)(0x648D774A)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\button_program.o --omf_browse .\objects\button_program.crf --depend .\objects\button_program.d)
+I (HAL\button\button_interface.h)(0x648D7444)
+I (HAL\button\button_config.h)(0x648D712E)
+I (.\MCAL\gpio\gpio_interface.h)(0x648D75E6)
+I (.\MCAL\gpio\..\..\LIB\common.h)(0x648CCC70)
+I (.\MCAL\gpio\..\..\LIB\bit_math.h)(0x648D774A)
+F (.\MCAL\gpio\gpio_program.c)(0x648D774B)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\gpio_program.o --omf_browse .\objects\gpio_program.crf --depend .\objects\gpio_program.d)
+I (MCAL\gpio\gpio_interface.h)(0x648D75E6)
+I (MCAL\gpio\..\..\LIB\common.h)(0x648CCC70)
+I (MCAL\gpio\..\..\LIB\bit_math.h)(0x648D774A)
+I (MCAL\gpio\gpio_private.h)(0x648D774B)
+I (.\MCAL\nvic\nvic_interface.h)(0x648D75E3)
+F (.\MCAL\nvic\nvic_program.c)(0x648D774B)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\nvic_program.o --omf_browse .\objects\nvic_program.crf --depend .\objects\nvic_program.d)
+I (MCAL\nvic\nvic_interface.h)(0x648D75E3)
+I (MCAL\nvic\..\..\LIB\common.h)(0x648CCC70)
+I (MCAL\nvic\..\..\LIB\bit_math.h)(0x648D774A)
+I (MCAL\nvic\nvic_private.h)(0x648D716F)
+F (.\main\main.c)(0x648D77CA)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\APP\app.h)(0x648CB72B)
+F (RTE\Device\TM4C123GH6PM\startup_TM4C123.s)(0x51B6C7E6)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 529" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\listings\startup_tm4c123.lst --xref -o .\objects\startup_tm4c123.o --depend .\objects\startup_tm4c123.d)
+F (RTE\Device\TM4C123GH6PM\system_TM4C123.c)(0x550A57CA)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\HAL\button -I .\APP -I .\HAL\led -I .\LIB -I .\main -I .\MCAL\nvic -I .\MCAL\gpio-I.\RTE\_Target_1-IC:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\system_tm4c123.o --omf_browse .\objects\system_tm4c123.crf --depend .\objects\system_tm4c123.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B0A58)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123.h)(0x530EE4E6)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123GH6PM.h)(0x550FD41C)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D25C8F6)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x5D25C8F6)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D25C8F6)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D25C8F6)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8F9424)
+I (C:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6C7E6)

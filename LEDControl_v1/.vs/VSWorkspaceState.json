@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\APP",
+    "\\HAL",
+    "\\HAL\\button",
+    "\\HAL\\led",
+    "\\LIB",
+    "\\main",
+    "\\MCAL",
+    "\\MCAL\\gpio",
+    "\\MCAL\\nvic"
+  ],
+  "SelectedNode": "\\MCAL\\nvic\\nvic_interface.h",
+  "PreviewInSolutionExplorer": false
+}
