@@ -1,7 +1,8 @@
 
 
-
+#include "common.h"
 #include "led_config.h"
+#include "gpio_interface.h"
 
 
 
@@ -13,7 +14,7 @@
  *	@return			LED_NOK        			:	In case of wrong pin index
  */
 
-enu_error_status_t_ led_init(uint8_t_ ledpin );
+enu_error_status_t_ led_init(void);
 
 /**
  *	@brief			This function is turn on led 

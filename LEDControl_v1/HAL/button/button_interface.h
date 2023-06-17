@@ -3,7 +3,6 @@
 
 #include "button_config.h"
 #include "common.h"
-#include "gpio_interface.h"
 
 typedef enum
 {
@@ -14,12 +13,12 @@ typedef enum
 
 /**
  *	@brief			This function is initalize button 
- *	@param [in]		buttonpin				        	:	Pin index used
+ *	@param [in]		ptr_func							:	pointer to callback
  *	@return			ERROR_OK					        	:	In case of successeion
  *	@return			bUTTON_NOK        			     :	In case of wrong pin index
  */
 
-enu_error_status_t_ button_init(uint8_t_ buttonpin );
+enu_error_status_t_ button_init(void(*ptr_func)(void));
 
 
 
@@ -34,4 +33,4 @@ enu_error_status_t_ button_init(uint8_t_ buttonpin );
 
 
 
-enu_error_status_t_ Button_GetState(uint8_t_ buttonpin, enu_gpio_pin_internal_attach_t_ ButtonAttach, uint8_t_ *buttonState);
+enu_error_status_t_ button_pressed(uint8_t_ uint8_button_pin, uint8_t_* uint8_button_state);
