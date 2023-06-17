@@ -46,6 +46,7 @@ typedef enum {
 	GPIO_INVALID_PIN_LEVEL,
 	PASSING_NULL_PTR,
 	LED_NOK,
+	BUTTON_NOK
 	
 }enu_error_status_t_;
 

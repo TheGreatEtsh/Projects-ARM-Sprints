@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.29.0.0
 Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Ahmed Hesham, Sprints, LIC=----
+License Information: sarah ali, sarah, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.29.0.0
@@ -21,24 +21,66 @@ Target DLL:      UL2CM3.DLL V1.163.0.0
 Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
-G:\ARM\LEDControl_v1\LEDControl_v1.uvprojx
+C:\Users\Sarah\Documents\GitHub\Projects-ARM-Sprints\LEDControl_v1\LEDControl_v1.uvprojx
 Project File Date:  06/17/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling app.c...
+.\HAL\led\led_interface.h(34): warning:  #1-D: last line of file ends without a newline
+  enu_error_status_t_ led_off(uint8_t_ ledpin_index );
+.\HAL\button\button_interface.h(37): warning:  #1-D: last line of file ends without a newline
+  enu_error_status_t_ Button_GetState(uint8_t_ buttonpin, enu_gpio_pin_internal_attach_t_ ButtonAttach, uint8_t_ *buttonState);
+APP\app.c: 2 warnings, 0 errors
+compiling led_program.c...
+HAL\led\led_interface.h(34): warning:  #1-D: last line of file ends without a newline
+  enu_error_status_t_ led_off(uint8_t_ ledpin_index );
+HAL\led\led_program.c(52): warning:  #940-D: missing return statement at end of non-void function "led_init" 
+  }
+HAL\led\led_program.c(24): warning:  #550-D: variable "en_a_error"  was set but never used
+  enu_error_status_t_ en_a_error = ERROR_OK;
+HAL\led\led_program.c(74): warning:  #940-D: missing return statement at end of non-void function "led_on" 
+  }
+HAL\led\led_program.c(63): warning:  #550-D: variable "en_a_error"  was set but never used
+  	enu_error_status_t_ en_a_error = ERROR_OK;
+HAL\led\led_program.c(97): warning:  #1-D: last line of file ends without a newline
+  }
+HAL\led\led_program.c(97): warning:  #940-D: missing return statement at end of non-void function "led_off" 
+  }
+HAL\led\led_program.c(85): warning:  #550-D: variable "en_a_error"  was set but never used
+  	enu_error_status_t_ en_a_error = ERROR_OK;
+HAL\led\led_program.c: 8 warnings, 0 errors
+compiling button_program.c...
+HAL\button\button_interface.h(37): warning:  #1-D: last line of file ends without a newline
+  enu_error_status_t_ Button_GetState(uint8_t_ buttonpin, enu_gpio_pin_internal_attach_t_ ButtonAttach, uint8_t_ *buttonState);
+HAL\button\button_program.c(37): warning:  #940-D: missing return statement at end of non-void function "button_init" 
+  }
+HAL\button\button_program.c(21): warning:  #550-D: variable "en_a_error"  was set but never used
+  enu_error_status_t_ en_a_error = ERROR_OK;
+HAL\button\button_program.c(76): warning:  #1-D: last line of file ends without a newline
+  }
+HAL\button\button_program.c(76): warning:  #940-D: missing return statement at end of non-void function "Button_GetState" 
+  }
+HAL\button\button_program.c(51): warning:  #550-D: variable "en_a_error"  was set but never used
+  	enu_error_status_t_ en_a_error = ERROR_OK;
+HAL\button\button_program.c: 6 warnings, 0 errors
+compiling gpio_program.c...
 compiling main.c...
+compiling nvic_program.c...
+assembling startup_TM4C123.s...
+compiling system_TM4C123.c...
 linking...
 Program Size: Code=700 RO-data=636 RW-data=0 ZI-data=608  
-".\Objects\LEDControl_v1.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\LEDControl_v1.axf" - 0 Error(s), 16 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.6.0.pack
-                ARM.CMSIS.5.6.0
-                CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.3.0
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.TM4C_DFP.1.1.0.pack
@@ -48,18 +90,18 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Target_1
-  C:\Users\elwady\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include
-  C:\Users\elwady\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123
+  C:\Users\Sarah\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\Sarah\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.3.0
+   * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:1.0.1
+      Source file:   Device\Source\ARM\startup_TM4C123.s
       Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\system_TM4C123.c
-      Source file:   Device\Source\ARM\startup_TM4C123.s
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
