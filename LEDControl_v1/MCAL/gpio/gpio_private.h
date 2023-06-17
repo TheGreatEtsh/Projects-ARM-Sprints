@@ -29,8 +29,8 @@
 
 #define GPIO_UNLOCKING_VALUE			0x4C4F434B
 
-#define RCGCGPIO		(*((volatile uint32_t_*) (SYS_CTRL_BASE_ADDRESS+0x608)))
-#define PRGPIO			(*((volatile uint32_t_*) (SYS_CTRL_BASE_ADDRESS+0xA08)))
+#define RCGCGPIO_		(*((volatile uint32_t_*) (SYS_CTRL_BASE_ADDRESS+0x608)))
+#define PRGPIO_			(*((volatile uint32_t_*) (SYS_CTRL_BASE_ADDRESS+0xA08)))
 
 
 
@@ -52,18 +52,11 @@
 #define GPIOICR(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x41C)))
 #define GPIOLOCK(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x520)))
 #define GPIOCR(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x524)))
+#define GPIOIEV(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x40C)))
 
 
 
 
-
-
-
-/**
- *  GLOBAL FUNCTION MACROS
- */
-#define CLK_GTE_CTRL_VALUE BIT_CONC(0,0,PORTF_CLK_GTE_CTRL,PORTE_CLK_GTE_CTRL,PORTD_CLK_GTE_CTRL,PORTC_CLK_GTE_CTRL,PORTB_CLK_GTE_CTRL,PORTA_CLK_GTE_CTRL)
-	
 
 #endif  /* GPIO_PRIVATE_H */
 /**

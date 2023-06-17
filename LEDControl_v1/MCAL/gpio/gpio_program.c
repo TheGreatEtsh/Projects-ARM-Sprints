@@ -14,6 +14,9 @@
 #include "gpio_interface.h"
 #include "gpio_private.h"
 #include "nvic_interface.h"
+#include "TM4C123.h"
+
+ptr_gpio_callback_t_ gpiof_callback = NULL_PTR;
 
 /**----------------------------------------------------------
  *  GLOBAL FUNCTION IMPLEMENTATIONS
@@ -50,13 +53,13 @@ enu_error_status_t_ gpio_pin_init(str_gpio_config_t_* ptr_str_gpio_config)
 		else
 		{
 			/*STEP 1: Enable clock to GPIO Port Used using RCGCGPIO register*/
-			if (1 == GET_BIT(RCGCGPIO, uint8_port_num))
+			if (1 == GET_BIT(RCGCGPIO_, uint8_port_num))
 			{
 				/*ENABLED*/
 			}
 			else
 			{
-				SET_BIT(RCGCGPIO, uint8_port_num);
+				SET_BIT(RCGCGPIO_, uint8_port_num);
 			}
 
 			/*STEP 2: Assigning pin direction, Output Current, and Pin Internal Attach*/
@@ -273,7 +276,8 @@ enu_error_status_t_ gpio_pin_read(uint8_t_ uint8_pin_index, uint8_t_* uint8_pin_
 		}
 		else
 		{
-			*uint8_pin_state = GPIODATA(uint8_port_num) >> uint8_pin_num; //GET_BIT(GPIODATA(uint8_port_num), uint8_port_num);
+			//*uint8_pin_state = GPIODATA(uint8_port_num) >> uint8_pin_num; 
+			*uint8_pin_state = GET_BIT(GPIODATA(uint8_port_num), uint8_port_num);
 		}
 	}
 
@@ -307,7 +311,14 @@ enu_error_status_t_ gpio_pin_enable_notification(uint8_t_ uint8_pin_index)
 		}
 		else
 		{
-			/*ERROR_OK*/
+			CLR_BIT(GPIOIM(uint8_port_num), uint8_pin_num); 
+			CLR_BIT(GPIOIS(uint8_port_num), uint8_pin_num); 
+			CLR_BIT(GPIOIBE(uint8_port_num), uint8_pin_num); 
+			CLR_BIT(GPIOIEV(uint8_port_num), uint8_pin_num);
+			SET_BIT(GPIOICR(uint8_port_num), uint8_pin_num); 
+			SET_BIT(GPIOIM(uint8_port_num), uint8_pin_num);
+			NVIC_EnableIRQ(GPIOF_IRQn);
+			__enable_irq();
 		}
 	}
 
@@ -349,12 +360,21 @@ enu_error_status_t_ gpio_pin_set_callback(uint8_t_ uint8_pin_index, ptr_gpio_cal
 			}
 			else
 			{
-	
+				gpiof_callback = ptr_callback;
 			}
 		}
 	}
 
 	return enu_ret_val;
+}
+void GPIOF_Handler(void)
+{
+	if (NULL_PTR != gpiof_callback)
+	{
+		gpiof_callback();
+		
+	}
+	GPIOICR(5) = 0xFF;
 }
 
 /**********************************************************************************************************************
