@@ -50,7 +50,7 @@
 #define GPIOIBE(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x408)))
 #define GPIORIS(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x414)))
 #define GPIOICR(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x41C)))
-#define GPIOLOCK(x)	(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x520)))
+#define GPIOLOCK(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x520)))
 #define GPIOCR(x)		(*((volatile uint32_t_*) (GPIO_OFFSET(x)+0x524)))
 
 
