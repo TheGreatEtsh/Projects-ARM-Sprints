@@ -236,17 +236,12 @@ typedef enum {
 	GPIO_PE3 = 43,
 	GPIO_PE4 = 44,
 	GPIO_PE5 = 45,
-	GPIO_PE6 = 46,
-	GPIO_PE7 = 47,
 	
 	GPIO_PF0 = 50,
 	GPIO_PF1 = 51,
 	GPIO_PF2 = 52,
 	GPIO_PF3 = 53,
-	GPIO_PF4 = 54,
-	GPIO_PF5 = 55,
-	GPIO_PF6 = 56,
-	GPIO_PF7 = 57
+	GPIO_PF4 = 54
 }enu_gpio_pin_index_t_;
 
 typedef struct {

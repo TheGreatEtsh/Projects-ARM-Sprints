@@ -39,31 +39,110 @@ enu_error_status_t_ gpio_pin_init(str_gpio_config_t_* ptr_str_gpio_config)
 
 	if (uint8_port_num > 5 || uint8_pin_num > 7)
 	{
-		if ((5 == uint8_port_num) && (uint8_pin_num > 2))
+		enu_ret_val = GPIO_INVALID_PIN_INDEX;
+	}
+	else
+	{
+		if (((5 == uint8_port_num) && (uint8_pin_num > 4)) || ((4 == uint8_port_num) && (uint8_pin_num > 5)))
 		{
 			enu_ret_val = GPIO_INVALID_PIN_INDEX;
 		}
 		else
 		{
-			/*ERROR_OK*/
-		}
-	}
-	else
-	{
-		/*STEP 1: Enable clock to GPIO Port Used using RCGCGPIO register*/
-		if (1 == GET_BIT(RCGCGPIO, uint8_port_num))
-		{
-			/*ENABLED*/
-		}
-		else
-		{
-			SET_BIT(RCGCGPIO, uint8_port_num);
-		}
+			/*STEP 1: Enable clock to GPIO Port Used using RCGCGPIO register*/
+			if (1 == GET_BIT(RCGCGPIO, uint8_port_num))
+			{
+				/*ENABLED*/
+			}
+			else
+			{
+				SET_BIT(RCGCGPIO, uint8_port_num);
+			}
 
-		/*STEP 2: Assigning pin direction, Output Current, and Pin Internal Attach*/
+			/*STEP 2: Assigning pin direction, Output Current, and Pin Internal Attach*/
+			if (GPIO_OUTPUT == ptr_str_gpio_config->enu_pin_direction)
+			{
+				SET_BIT(GPIODIR(uint8_port_num), uint8_pin_num);
+				
+				/*STEP 3: Assigning whether the pin is working digital or Alternative function*/
+				switch (ptr_str_gpio_config->enu_pin_mode)
+				{
+				case GPIO_DIO:
+					CLR_BIT(GPIOAFSEL(uint8_port_num), uint8_pin_num);
+					break;
+				default:
+					GPIOLOCK(uint8_port_num) = GPIO_UNLOCKING_VALUE;	GPIOCR(uint8_port_num) = 0x1;
+					SET_BIT(GPIOAFSEL(uint8_port_num), uint8_pin_num);
+					GPIOLOCK(uint8_port_num) = GPIO_UNLOCKING_VALUE;	GPIOCR(uint8_port_num) = 0x1;
+					(GPIOPCTL(uint8_port_num) &= (~((uint32_t_)15 << (4 * uint8_pin_num))));
+					(GPIOPCTL(uint8_port_num) |= ((uint32_t_)ptr_str_gpio_config->enu_pin_mode << (4 * uint8_pin_num))); 	
+					break;
+				}
+				
 
-		/*STEP 3: Assigning whether the pin is working digital or Alternative function*/
+				switch (ptr_str_gpio_config->enu_pin_output_current)
+				{
+				case GPIO_2mA:
+					SET_BIT(GPIODR2R(uint8_port_num), uint8_pin_num);
+					break;
 
+				case GPIO_4mA:
+					SET_BIT(GPIODR4R(uint8_port_num), uint8_pin_num);
+					break;
+
+				case GPIO_8mA:
+					SET_BIT(GPIODR8R(uint8_port_num), uint8_pin_num);
+					break;
+
+				default:
+					enu_ret_val = GPIO_INVALID_OP_CURRENT;
+					break;
+				}
+			}
+			else if (GPIO_INPUT == ptr_str_gpio_config->enu_pin_direction)
+			{
+				CLR_BIT(GPIODIR(uint8_port_num), uint8_pin_num);
+
+				/*STEP 3: Assigning whether the pin is working digital or Alternative function*/
+				switch (ptr_str_gpio_config->enu_pin_mode)
+				{
+				case GPIO_DIO:
+					CLR_BIT(GPIOAFSEL(uint8_port_num), uint8_pin_num);
+					break;
+				default:
+					GPIOLOCK(uint8_port_num) = GPIO_UNLOCKING_VALUE;	GPIOCR(uint8_port_num) = 0x1;
+					SET_BIT(GPIOAFSEL(uint8_port_num), uint8_pin_num);
+					GPIOLOCK(uint8_port_num) = GPIO_UNLOCKING_VALUE;	GPIOCR(uint8_port_num) = 0x1;
+					(GPIOPCTL(uint8_port_num) &= (~((uint32_t_)15 << (4 * uint8_pin_num))));
+					(GPIOPCTL(uint8_port_num) |= ((uint32_t_)ptr_str_gpio_config->enu_pin_mode << (4 * uint8_pin_num)));
+					break;
+				}
+
+				switch (ptr_str_gpio_config->enu_pin_internal_attach)
+				{
+				case GPIO_PULLDOWN:
+					SET_BIT(GPIOPDR(uint8_port_num), uint8_pin_num);
+					break;
+
+				case GPIO_PULLUP:
+					SET_BIT(GPIOPUR(uint8_port_num), uint8_pin_num);
+					break;
+
+				case GPIO_OPENDRAIN:
+					SET_BIT(GPIOODR(uint8_port_num), uint8_pin_num);
+					break;
+
+				default:
+					enu_ret_val = GPIO_INVALID_INTERNAL_ATTACH;
+					break;
+				}
+			}
+			else
+			{
+				enu_ret_val = GPIO_INVALID_PIN_DIRECTION;
+			}
+			SET_BIT(GPIODEN(uint8_port_num), uint8_pin_num);
+		}
 	}
 
 	return enu_ret_val;
@@ -79,7 +158,7 @@ enu_error_status_t_ gpio_pin_init(str_gpio_config_t_* ptr_str_gpio_config)
  *	@return			GPIO_INVALID_PIN_INDEX			:	In case of wrong pin index
  *	@return			GPIO_INVALID_PIN_LEVEL			:	In case of wrong output level choosen
  */
-enu_error_status_t_ gpio_pin_Write(uint8_t_ uint8_pin_index, enu_gpio_pin_level_t_ enu_pin_level)
+enu_error_status_t_ gpio_pin_write(uint8_t_ uint8_pin_index, enu_gpio_pin_level_t_ enu_pin_level)
 {
 	enu_error_status_t_ enu_ret_val = ERROR_OK;
 
@@ -89,28 +168,29 @@ enu_error_status_t_ gpio_pin_Write(uint8_t_ uint8_pin_index, enu_gpio_pin_level_
 
 	if (uint8_port_num > 5 || uint8_pin_num > 7)
 	{
-		if ((5 == uint8_port_num) && (uint8_pin_num > 2))
+		enu_ret_val = GPIO_INVALID_PIN_INDEX;
+		
+	}
+	else
+	{
+		if (((5 == uint8_port_num) && (uint8_pin_num > 4)) || ((4 == uint8_port_num) && (uint8_pin_num > 5)))
 		{
 			enu_ret_val = GPIO_INVALID_PIN_INDEX;
 		}
 		else
 		{
-			/*ERROR_OK*/
-		}
-	}
-	else
-	{
-		if (enu_pin_level == GPIO_HIGH)
-		{
-			SET_BIT(GPIODATA(uint8_port_num), uint8_port_num);
-		}
-		else if (enu_pin_level == GPIO_LOW)
-		{
-			CLR_BIT(GPIODATA(uint8_port_num), uint8_port_num);
-		}
-		else
-		{
-			enu_ret_val = GPIO_INVALID_PIN_LEVEL;
+			if (enu_pin_level == GPIO_HIGH)
+			{
+				SET_BIT(GPIODATA(uint8_port_num), uint8_port_num);
+			}
+			else if (enu_pin_level == GPIO_LOW)
+			{
+				CLR_BIT(GPIODATA(uint8_port_num), uint8_port_num);
+			}
+			else
+			{
+				enu_ret_val = GPIO_INVALID_PIN_LEVEL;
+			}
 		}
 	}
 
@@ -134,18 +214,18 @@ enu_error_status_t_ gpio_pin_toggle(uint8_t_ uint8_pin_index)
 
 	if (uint8_port_num > 5 || uint8_pin_num > 7)
 	{
-		if ((5 == uint8_port_num) && (uint8_pin_num > 2))
+		enu_ret_val = GPIO_INVALID_PIN_INDEX;
+	}
+	else
+	{
+		if (((5 == uint8_port_num) && (uint8_pin_num > 4)) || ((4 == uint8_port_num) && (uint8_pin_num > 5)))
 		{
 			enu_ret_val = GPIO_INVALID_PIN_INDEX;
 		}
 		else
 		{
-			/*ERROR_OK*/
+			TGL_BIT(GPIODATA(uint8_port_num), uint8_port_num);
 		}
-	}
-	else
-	{
-		TGL_BIT(GPIODATA(uint8_port_num), uint8_port_num);
 	}
 
 	return enu_ret_val;
@@ -168,7 +248,7 @@ enu_error_status_t_ gpio_pin_read(uint8_t_ uint8_pin_index, uint8_t_* uint8_pin_
 
 	if (uint8_port_num > 5 || uint8_pin_num > 7)
 	{
-		if ((5 == uint8_port_num) && (uint8_pin_num > 2))
+		if (((5 == uint8_port_num) && (uint8_pin_num > 4)) || ((4 == uint8_port_num) && (uint8_pin_num > 5)))
 		{
 			enu_ret_val = GPIO_INVALID_PIN_INDEX;
 		}
@@ -202,7 +282,7 @@ enu_error_status_t_ gpio_pin_enable_notification(uint8_t_ uint8_pin_index)
 
 	if (uint8_port_num > 5 || uint8_pin_num > 7)
 	{
-		if ((5 == uint8_port_num) && (uint8_pin_num > 2))
+		if (((5 == uint8_port_num) && (uint8_pin_num > 4)) || ((4 == uint8_port_num) && (uint8_pin_num > 5)))
 		{
 			enu_ret_val = GPIO_INVALID_PIN_INDEX;
 		}
@@ -238,7 +318,7 @@ enu_error_status_t_ gpio_pin_set_callback(uint8_t_ uint8_pin_index, ptr_gpio_cal
 
 	if (uint8_port_num > 5 || uint8_pin_num > 7)
 	{
-		if ((5 == uint8_port_num) && (uint8_pin_num > 2))
+		if (((5 == uint8_port_num) && (uint8_pin_num > 4)) || ((4 == uint8_port_num) && (uint8_pin_num > 5)))
 		{
 			enu_ret_val = GPIO_INVALID_PIN_INDEX;
 		}
