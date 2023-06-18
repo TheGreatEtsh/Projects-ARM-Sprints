@@ -13,7 +13,6 @@
  *----------------------------------------------------------*/
 #include "gpio_interface.h"
 #include "gpio_private.h"
-#include "nvic_interface.h"
 #include "TM4C123.h"
 
 ptr_gpio_callback_t_ gpiof_callback = NULL_PTR;
@@ -145,12 +144,10 @@ enu_error_status_t_ gpio_pin_init(str_gpio_config_t_* ptr_str_gpio_config)
 			}
 			else
 			{
-				GPIOLOCK(uint8_port_num) = GPIO_UNLOCKING_VALUE;	GPIOCR(uint8_port_num) = 0x1;
 				enu_ret_val = GPIO_INVALID_PIN_DIRECTION;
 			}
-
-			SET_BIT(GPIODEN(uint8_port_num), uint8_pin_num);
 			GPIOLOCK(uint8_port_num) = GPIO_UNLOCKING_VALUE;	GPIOCR(uint8_port_num) = 0x1;
+			SET_BIT(GPIODEN(uint8_port_num), uint8_pin_num);
 		}
 	}
 
