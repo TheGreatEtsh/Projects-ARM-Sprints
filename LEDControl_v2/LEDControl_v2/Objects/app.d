@@ -1,0 +1,11 @@
+.\objects\app.o: APP\app.c
+.\objects\app.o: APP\app.h
+.\objects\app.o: .\HAL\led\led_interface.h
+.\objects\app.o: .\LIB\common.h
+.\objects\app.o: .\HAL\led\led_config.h
+.\objects\app.o: .\MCAL\gpio\gpio_interface.h
+.\objects\app.o: .\MCAL\gpio\..\..\LIB\bit_math.h
+.\objects\app.o: .\HAL\button\button_interface.h
+.\objects\app.o: .\HAL\button\button_config.h
+.\objects\app.o: .\MCAL\systick\systick_interface.h
+.\objects\app.o: .\MCAL\systick\systick_config.h
