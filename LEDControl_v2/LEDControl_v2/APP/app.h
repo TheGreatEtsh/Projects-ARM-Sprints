@@ -10,6 +10,9 @@
 #ifndef APP_H
 #define APP_H
 
+#define APP_SYSTICK_TIME				50
+#define APP_LED_ON_TIME					1000/APP_SYSTICK_TIME
+#define APP_BUTTON_PERIODICTY		50/APP_SYSTICK_TIME
 
 /**----------------------------------------------------------
  *  GLOBAL FUNCTION PROTOTYPES

@@ -17,8 +17,9 @@
 /**----------------------------------------------------------
  *  STATIC FUNCTION PROTOTYPES
  *----------------------------------------------------------*/
-static void button_task(void);
+static void app_button_task(void);
 static void app_systick_task(void);
+static void app_led_task(void);
 typedef enum
 {
 	FIRST_PRESS,
@@ -41,8 +42,10 @@ void app_init(void)
 {
 	//button_init(button_task);
 	led_init();
-	systick_init(1000);
+	button_init(NULL_PTR);
+	systick_init(APP_SYSTICK_TIME);
 	systick_set_callback(app_systick_task);
+	
 	
 }
 
@@ -55,10 +58,10 @@ void app_init(void)
  *	@param [out]	none
  *	@return			none
  */
-static void button_task(void)
+
+static void app_led_task(void)
 {
 	static enu_app_pressing_state_t_ enu_pressing_state = FIRST_PRESS;
-	uint8_t_ uint8_button_state;
 	switch (enu_pressing_state)
 	{
 	case FIRST_PRESS:
@@ -95,33 +98,47 @@ static void button_task(void)
 		led_off(BLUE_LED);
 		enu_pressing_state = FIRST_PRESS;
 		break;
-
-
-
+	
 	default:
 		break;
 	}
-	
-	button_get_state(SW_1, &uint8_button_state);
-	while(BUTTON_PRESSED == uint8_button_state)
+}
+static void app_button_task(void)
+{
+	static uint8_t_ uint8_still_pressed = 0, uint8_turn_on_counter = 0, uint8_led_is_on = 0;
+	uint8_t_ uint8_button_state = 0;
+	button_get_state(SW_1,&uint8_button_state);
+	if (uint8_button_state == BUTTON_PRESSED)
 	{
-		button_get_state(SW_1, &uint8_button_state);
+		if (uint8_still_pressed == FALSE)
+		{
+			uint8_still_pressed = TRUE;
+		}
+		else if (uint8_still_pressed == TRUE)
+		{
+			app_led_task();
+			uint8_led_is_on = TRUE;
+			uint8_still_pressed = FALSE;
+			uint8_turn_on_counter = APP_LED_ON_TIME;
+		}
+	}
+	
+	if(uint8_led_is_on == TRUE && uint8_turn_on_counter > 0)
+	{
+		uint8_turn_on_counter--;
+		if(uint8_turn_on_counter == 0)
+		{
+			led_off(RED_LED);
+			led_off(GREEN_LED);
+			led_off(BLUE_LED);
+			uint8_led_is_on = FALSE;
+		}
 	}
 }
 
 static void app_systick_task(void)
 {
-	static uint8_t_ uint8_flag = 0;
-	if(!uint8_flag)
-	{
-		led_on(BLUE_LED);
-		uint8_flag = 1;
-	}
-	else
-	{
-		led_off(BLUE_LED);
-		uint8_flag = 0;
-	}
+	app_button_task();
 }
 /**********************************************************************************************************************
  *  END OF FILE: app.c
