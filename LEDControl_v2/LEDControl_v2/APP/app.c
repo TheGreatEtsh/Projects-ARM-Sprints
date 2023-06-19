@@ -13,7 +13,7 @@
 #include "app.h"
 #include "led_interface.h"
 #include "button_interface.h"
-#include "systick_interface.h"
+#include "systick_handler_interface.h"
 /**----------------------------------------------------------
  *  STATIC FUNCTION PROTOTYPES
  *----------------------------------------------------------*/
@@ -43,8 +43,8 @@ void app_init(void)
 	//button_init(button_task);
 	led_init();
 	button_init(NULL_PTR);
-	systick_init(APP_SYSTICK_TIME);
-	systick_set_callback(app_systick_task);
+	handler_init_systick(APP_SYSTICK_TIME);
+	handler_set_callback_systick(app_systick_task);
 	
 	
 }

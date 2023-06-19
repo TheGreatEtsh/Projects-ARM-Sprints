@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\HAL\button;.\APP;.\HAL\led;.\LIB;.\main;.\MCAL\nvic;.\MCAL\gpio;.\MCAL\systick</IncludePath>
+              <IncludePath>.\HAL\button;.\APP;.\HAL\led;.\LIB;.\main;.\MCAL\nvic;.\MCAL\gpio;.\MCAL\systick;.\SERV</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -426,6 +426,16 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SERV</GroupName>
+          <Files>
+            <File>
+              <FileName>systick_handler_program.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SERV\systick_handler_program.c</FilePath>
             </File>
           </Files>
         </Group>

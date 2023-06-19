@@ -7,5 +7,6 @@
 .\objects\app.o: .\MCAL\gpio\..\..\LIB\bit_math.h
 .\objects\app.o: .\HAL\button\button_interface.h
 .\objects\app.o: .\HAL\button\button_config.h
+.\objects\app.o: .\SERV\systick_handler_interface.h
 .\objects\app.o: .\MCAL\systick\systick_interface.h
 .\objects\app.o: .\MCAL\systick\systick_config.h
