@@ -10,7 +10,7 @@ typedef enum
 {
 	BUTTON_RELEASED = 0,
 	BUTTON_PRESSED = 1
-} Button_State;
+} enu_button_state_t_;
 
 
 /**
