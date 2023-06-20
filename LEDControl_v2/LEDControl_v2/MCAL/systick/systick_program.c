@@ -39,7 +39,16 @@ uint32_t_ gl_uint32_current_delay_used = 0;
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
-
+/**----------------------------------------------------------
+ *  GLOBAL FUNCTION IMPLEMENTATIONS
+ *----------------------------------------------------------*/
+ /**
+  *	@brief				This function is used to initialize system tick and load its counter
+  *	@param [in]		uint32_delay_time_ms	:	desired time to interrupt after it
+  *	@param [out]	none
+  *	@return				ERROR_OK							:	In case of success
+  *	@return				SYSTICK_WRONG_VALUE		:	In case of uint32_delay_time_ms = 0
+  */
 enu_error_status_t_ systick_init(uint32_t_ uint32_delay_time_ms)
 {
 	enu_error_status_t_ enu_ret_val = ERROR_OK;
@@ -66,6 +75,12 @@ enu_error_status_t_ systick_init(uint32_t_ uint32_delay_time_ms)
 	return enu_ret_val;
 }
 
+/**
+  *	@brief				This function is used to disable systick
+  *	@param [in]		none
+  *	@param [out]	none
+  *	@return				ERROR_OK							:	In case of success
+  */
 enu_error_status_t_ systick_disable(void)
 {
 	enu_error_status_t_ enu_ret_val = ERROR_OK;
@@ -74,6 +89,13 @@ enu_error_status_t_ systick_disable(void)
 	return enu_ret_val;
 }
 
+/**
+  *	@brief				This function is used to reload systick
+  *	@param [in]		uint32_delay_time_ms	:	desired time to interrupt after it
+  *	@param [out]	none
+  *	@return				ERROR_OK							:	In case of success
+  *	@return				SYSTICK_WRONG_VALUE		:	In case of uint32_delay_time_ms = 0
+  */
 enu_error_status_t_ systick_reload(uint32_t_ uint32_delay_time_ms)
 {
 	enu_error_status_t_ enu_ret_val = ERROR_OK;
@@ -98,12 +120,27 @@ enu_error_status_t_ systick_reload(uint32_t_ uint32_delay_time_ms)
 	}
 	return enu_ret_val;
 }
+
+/**
+  *	@brief				This function is used to enable systick
+  *	@param [in]		none
+  *	@param [out]	none
+  *	@return				ERROR_OK							:	In case of success
+  */
 enu_error_status_t_ systick_enable(void)
 {
 	enu_error_status_t_ enu_ret_val = ERROR_OK;
 	systick_reload(gl_uint32_current_delay_used);
 	return enu_ret_val;
 }
+
+/**
+  *	@brief				This function is used to set callback funtion for systick interrupt
+  *	@param [in]		none
+  *	@param [out]	none
+  *	@return				ERROR_OK							:	In case of success
+	* @return				PASSING_NULL_PTR			: In case of passing null pointer
+  */
 enu_error_status_t_ systick_set_callback(void (*a_void_ptr) (void))
 {
 	enu_error_status_t_ enu_ret_val = ERROR_OK;

@@ -33,32 +33,28 @@ typedef enum
  *  GLOBAL FUNCTION IMPLEMENTAIONS
  *----------------------------------------------------------*/
 /**
- *	@brief			This function is used to initialize drivers used
+ *	@brief				This function is used to initialize drivers used
  *	@param [in]		none
  *	@param [out]	none
- *	@return			none
+ *	@return				none
  */
 void app_init(void)
 {
-	//button_init(button_task);
 	led_init();
 	button_init(NULL_PTR);
 	handler_init_systick(APP_SYSTICK_TIME);
 	handler_set_callback_systick(app_systick_task);
-	
-	
 }
 
 /**----------------------------------------------------------
  *  STATIC FUNCTION IMPLEMENTATION
  *----------------------------------------------------------*/
 /**
- *	@brief			This function is the called back when button pressed
+ *	@brief				This function is the called to perform LED task
  *	@param [in]		none
  *	@param [out]	none
- *	@return			none
+ *	@return				none
  */
-
 static void app_led_task(void)
 {
 	static enu_app_pressing_state_t_ enu_pressing_state = FIRST_PRESS;
@@ -103,6 +99,13 @@ static void app_led_task(void)
 		break;
 	}
 }
+
+/**
+ *	@brief				This function is the called to perform buttons task -get buttons state-
+ *	@param [in]		none
+ *	@param [out]	none
+ *	@return				none
+ */
 static void app_button_task(void)
 {
 	static uint8_t_ uint8_still_pressed = 0, uint8_turn_on_counter = 0, uint8_led_is_on = 0;
@@ -110,15 +113,15 @@ static void app_button_task(void)
 	button_get_state(SW_1,&uint8_button_state);
 	if (uint8_button_state == BUTTON_PRESSED)
 	{
-		if (uint8_still_pressed == FALSE)
+		if (uint8_still_pressed < 2)
 		{
-			uint8_still_pressed = TRUE;
+			uint8_still_pressed ++;
 		}
-		else if (uint8_still_pressed == TRUE)
+		else if (uint8_still_pressed == 2)
 		{
 			app_led_task();
 			uint8_led_is_on = TRUE;
-			uint8_still_pressed = FALSE;
+			uint8_still_pressed = 0;
 			uint8_turn_on_counter = APP_LED_ON_TIME;
 		}
 	}
@@ -136,6 +139,12 @@ static void app_button_task(void)
 	}
 }
 
+/**
+ *	@brief				This function is the called back when system tick interrupts
+ *	@param [in]		none
+ *	@param [out]	none
+ *	@return				none
+ */
 static void app_systick_task(void)
 {
 	app_button_task();
