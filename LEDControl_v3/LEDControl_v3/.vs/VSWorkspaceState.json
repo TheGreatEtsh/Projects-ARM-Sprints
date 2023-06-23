@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\HAL",
+    "\\HAL\\button",
+    "\\HAL\\led",
+    "\\LIB",
+    "\\main",
+    "\\MCAL",
+    "\\MCAL\\gpio",
+    "\\SERV",
+    "\\SERV\\pwm_manager"
+  ],
+  "SelectedNode": "\\SERV\\pwm_manager\\pwm_program.c",
+  "PreviewInSolutionExplorer": false
+}
